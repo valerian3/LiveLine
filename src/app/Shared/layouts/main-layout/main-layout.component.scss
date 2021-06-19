@@ -1,0 +1,21 @@
+.main-menu {
+  margin: 30px auto 0;
+  width: 70%;
+  background-color: #c5c4c44d;
+  box-shadow: 0 0 10px rgba(0,0,0,0.4);
+  //background-color: #d4d4d4;
+  ul{
+    list-style-type: none;
+    display: flex;
+    li {
+      padding: 0 25px;
+      a {
+        display: block;
+        height: 40px;
+        line-height: 40px;
+        text-decoration: none;
+        color: rgba(0,0,0,.87);
+      }
+    }
+  }
+}

@@ -1,0 +1,41 @@
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef> id </th>
+    <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="Type">
+    <th mat-header-cell *matHeaderCellDef> Type </th>
+    <td mat-cell *matCellDef="let element"> {{element.type}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="Description">
+    <th mat-header-cell *matHeaderCellDef> Description </th>
+    <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="Date">
+    <th mat-header-cell *matHeaderCellDef> Date </th>
+    <td mat-cell *matCellDef="let element">
+      {{(element.date | date: 'HH:mm:ss') <= currentTime ? removeElem(element.id): (element.date | date: 'HH:mm:ss')}} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+<app-watch>{{currentTime}}</app-watch>
+
+{{currentTime}}
+
+<mat-form-field>
+  <input matInput [ngxMatDatetimePicker]="picker" placeholder="Choose a date"
+         [min]="currentTime">
+  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+  <ngx-mat-datetime-picker #picker
+                           [stepHour]="1" [stepMinute]='1'
+
+                          >
+  </ngx-mat-datetime-picker>
+</mat-form-field>

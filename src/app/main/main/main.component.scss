@@ -1,0 +1,11 @@
+table {
+  width: 70%;
+  margin: 0 auto;
+  th, td {
+    text-align: center;
+  }
+}
+
+.active {
+  border-block-end: 2px solid black;
+}
