@@ -1,1 +1,37 @@
-<p>create works!</p>
+<form [formGroup]="form" class="form-wrapper" (ngSubmit)="onSubmit()">
+
+    <mat-form-field appearance="fill">
+      <mat-label>Write a descroption</mat-label>
+      <input matInput #input maxlength="10" formControlName="description">
+      <mat-error *ngIf="form.get('description').invalid || form.get('description').touched">
+                <span *ngIf="form.get('description').errors?.minlength && form.get('description').errors?.minlength.requiredLength">
+          Min length must be
+                  {{form.get('description').errors.minlength.requiredLength}},
+          now {{form.get('description').errors.minlength.actualLength}}
+              </span>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" >
+      <mat-label>Select type of coupon</mat-label>
+      <mat-select formControlName="selectType">
+        <mat-option *ngFor="let type of types" [value]="type">{{type.nameOfType}}</mat-option>
+      </mat-select>
+      <mat-hint align="end"></mat-hint>
+    </mat-form-field>
+
+  <mat-form-field>
+    <input matInput [ngxMatDatetimePicker]="picker" placeholder="Choose a date"
+           [min]="currentTime" formControlName="dateControl">
+    <button type="button" mat-icon-button matSuffix (click)="picker.open(); $event.stopPropagation();">
+      <mat-icon>today</mat-icon>
+    </button>
+    <ngx-mat-datetime-picker #picker
+                             [stepHour]="1" [stepMinute]='1'
+    >
+    </ngx-mat-datetime-picker>
+  </mat-form-field>
+
+  <mat-error *ngIf="status">You need to change time</mat-error>
+  <button [disabled]="form.invalid" mat-raised-button color="primary" type="submit">add coupon</button>
+</form>

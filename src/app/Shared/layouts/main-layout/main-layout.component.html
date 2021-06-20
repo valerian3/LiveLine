@@ -1,8 +1,11 @@
 <nav class="main-menu">
   <ul>
-    <li><a [routerLink]="['/']">Талони</a></li>
-    <li><a [routerLink]="['/create']">Добавить талон</a></li>
-    <li><a [routerLink]="['/edit']">Редактирование</a></li>
+    <li><a [routerLink]="['/']">Coupons</a></li>
+    <li><a [routerLink]="['/create']">Add coupon</a></li>
+    <li><a [routerLink]="['/edit']">Edit</a></li>
   </ul>
 </nav>
-<router-outlet></router-outlet>
+
+<div class="wrapper">
+  <router-outlet></router-outlet>
+</div>

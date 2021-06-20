@@ -1,5 +1,5 @@
 table {
-  width: 70%;
+  width: 100%;
   margin: 0 auto;
   th, td {
     text-align: center;
@@ -8,4 +8,17 @@ table {
 
 .active {
   border-block-end: 2px solid black;
+}
+
+.empty {
+  width: 100%;
+  margin: 15px auto;
+  text-align: center;
+  font-weight: 400;
+  font-size: 25px;
+}
+
+.load {
+  display: block;
+  margin: 20px auto;
 }

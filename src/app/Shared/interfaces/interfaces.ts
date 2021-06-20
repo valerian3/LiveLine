@@ -4,13 +4,13 @@
 
 export interface Coupon {
   id: number,
-  type: string,
+  type: typeOfCoupon,
   description: string,
-  date: Date
+  date: Date | string
 }
 
 export interface typeOfCoupon {
-  id: string,
+  id: number,
   code: number,
   nameOfType: string
 }
