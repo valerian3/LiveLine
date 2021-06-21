@@ -14,8 +14,7 @@ export class MainComponent implements OnInit {
 
   step: number = 10;
   ELEMENT_DATA: Coupon[];
-  displayedColumns: string[] = ['id', 'Type', 'Description', 'Date'];
-  // currentTime = formatDate(new Date(), 'HH:mm:ss M/d/yy', 'ua');
+  displayedColumns: string[] = ['id', 'Type',  'Date'];//'Description',
   currentTime = new Date().getTime()
   dataSource = this.ELEMENT_DATA;
   data = formatDate(new Date(), 'HH:mm:ss', 'ua')
@@ -28,17 +27,15 @@ export class MainComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    // console.log(this.data, formatDate(new Date().getTime() + 60 * 1000, 'HH:mm:ss', 'ua'))
-    // console.log(this.ELEMENT_DATA)
-
-    // this.ELEMENT_DATA = JSON.parse(localStorage.getItem('Data'));
-    // this.dataSource = this.ELEMENT_DATA;
     this.fetch(this.step);
-
     setInterval(() => {
-      // this.currentTime = formatDate(new Date(), 'HH:mm:ss d/MM/yy', 'ua');
       this.currentTime = new Date().getTime()
     }, 1000)
+  }
+
+  getDate(data){
+    let elem = new Date(data.toString()).getTime();
+    return ((elem - this.currentTime)/(1000*60)).toFixed();
   }
 
   fetch(step: number){
@@ -59,21 +56,10 @@ export class MainComponent implements OnInit {
   }
 
 
-  async removeElem(id: {id: number}) {
-    // this.ELEMENT_DATA = await JSON.parse(localStorage.getItem('Data')).filter((elem: Coupon) => elem.id !== +id )
-    // localStorage.setItem(
-    //   'Data',
-    //   JSON.stringify(this.ELEMENT_DATA)
-    // )
+  async removeElem(id: {id: number}, typeOfCoupon) {
     this.ELEMENT_DATA = await this.crud.removeElem(id);
     this.dataSource = await this.fetch(this.step);
-    this.openDialog(id);
-    // this.ELEMENT_DATA = await this.ELEMENT_DATA.filter((elem: Coupon) => elem.id !== +id );
-    // this.dataSource = this.ELEMENT_DATA;
-    // localStorage.setItem(
-    //   'Data',
-    //   JSON.stringify(this.ELEMENT_DATA)
-    // )
+    this.openDialog(id+typeOfCoupon.toString());
   }
 
 }
