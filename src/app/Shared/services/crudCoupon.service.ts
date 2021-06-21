@@ -5,7 +5,7 @@ import {formatDate} from "@angular/common";
 @Injectable({
   providedIn: 'root'
 })
-export class CrudService {
+export class CrudCouponService {
 
   constructor() { }
 
@@ -25,12 +25,10 @@ export class CrudService {
   addCoupon(newCoupon: Coupon){
     const elems = JSON.parse(localStorage.getItem('Data'));
     if (this.verifyData(elems, newCoupon) === true){
-      console.log('no wait')
       elems.push(newCoupon);
       return localStorage.setItem('Data', JSON.stringify(elems))
     }
 
-    console.log(elems, 'wait');
     return false;
   }
 
@@ -46,6 +44,16 @@ export class CrudService {
       }
     })
     return status;
+  }
+
+  removeElem(id: {id: number}){
+    const editElem = JSON.parse(localStorage.getItem('Data'))
+      .filter((elem: Coupon) => elem.id !== +id )
+      localStorage.setItem(
+        'Data',
+        JSON.stringify(editElem)
+      )
+    return editElem
   }
 
 }

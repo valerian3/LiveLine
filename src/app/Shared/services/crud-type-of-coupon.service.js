@@ -6,19 +6,19 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 exports.__esModule = true;
-exports.CrudService = void 0;
+exports.CrudTypeOfCouponService = void 0;
 var core_1 = require("@angular/core");
-var CrudService = /** @class */ (function () {
-    function CrudService() {
+var CrudTypeOfCouponService = /** @class */ (function () {
+    function CrudTypeOfCouponService() {
     }
-    CrudService.prototype.fetch = function (n) {
-        return JSON.parse(localStorage.getItem('Data')).sort();
+    CrudTypeOfCouponService.prototype.fetch = function () {
+        return JSON.parse(localStorage.getItem('typesOfCoupon'));
     };
-    CrudService = __decorate([
+    CrudTypeOfCouponService = __decorate([
         core_1.Injectable({
             providedIn: 'root'
         })
-    ], CrudService);
-    return CrudService;
+    ], CrudTypeOfCouponService);
+    return CrudTypeOfCouponService;
 }());
-exports.CrudService = CrudService;
+exports.CrudTypeOfCouponService = CrudTypeOfCouponService;

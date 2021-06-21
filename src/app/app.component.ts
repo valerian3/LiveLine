@@ -16,9 +16,6 @@ export class AppComponent implements OnInit{
       {id: 4, code: 4, nameOfType: 'Work'}
     ]
 
-    const now = Date.now(); // Unix timestamp in milliseconds
-    console.log( now );
-
     const newCoupons: Coupon[] = [
       { id: 1, type: {id: 1, code: 1, nameOfType: 'Сertificate'}, description: "Driver's license",     date: new Date(new Date().getTime() + 1* 60* 1000) },
       { id: 2, type: {id: 2, code: 2, nameOfType: 'Inform'}, description: "Health consultation",    date: new Date(new Date().getTime() + 2* 60* 1000)  },
@@ -34,6 +31,7 @@ export class AppComponent implements OnInit{
       { id: 90, type: {id: 2, code: 2, nameOfType: 'Inform'}, description: "Health consultation",     date: new Date(new Date().getTime() + 12* 60* 1000)  },
       { id: 100, type: {id: 1, code: 1, nameOfType: 'Сertificate'}, description: "For swimming in the pool",     date: new Date(new Date().getTime() + 13* 60* 1000)  },
     ]
+
     const test: Coupon[] = JSON.parse(localStorage.getItem('Data'))
     if(test === null || test.length === 0){
       localStorage.setItem('Data', JSON.stringify(newCoupons));
@@ -43,6 +41,5 @@ export class AppComponent implements OnInit{
 
   ngOnInit(): void {
     this.initTestData()
-
   }
 }

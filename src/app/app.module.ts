@@ -16,6 +16,7 @@ import {MaterialModule} from "./Shared/modules/material.module";
 import { WatchComponent } from './Shared/components/watch/watch.component';
 import { NGX_MAT_DATE_FORMATS, NgxMatDateFormats} from "@angular-material-components/datetime-picker";
 import { DialogComponent } from './main/dialog/dialog.component';
+import {DialogTypeComponent} from "./edit/dialog/dialogType.component";
 
 
 registerLocaleData(uaLocale, 'ua')
@@ -41,7 +42,8 @@ const CUSTOM_DATE_FORMATS: NgxMatDateFormats = {
     PageNotFoundComponent,
     MainLayoutComponent,
     WatchComponent,
-    DialogComponent
+    DialogComponent,
+    DialogTypeComponent
   ],
   imports: [
     BrowserModule,

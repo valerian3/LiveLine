@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Coupon} from "../../Shared/interfaces/interfaces";
 import {formatDate} from "@angular/common";
-import {CrudService} from "../../Shared/services/crud.service";
+import {CrudCouponService} from "../../Shared/services/crudCoupon.service";
 import {MatDialog} from "@angular/material/dialog";
 import {DialogComponent} from "../dialog/dialog.component";
 
@@ -23,7 +23,7 @@ export class MainComponent implements OnInit {
 
 
   constructor(
-    private crud: CrudService,
+    private crud: CrudCouponService,
     public dialog: MatDialog
   ) { }
 
@@ -60,13 +60,13 @@ export class MainComponent implements OnInit {
 
 
   async removeElem(id: {id: number}) {
-
-    this.ELEMENT_DATA = await JSON.parse(localStorage.getItem('Data')).filter((elem: Coupon) => elem.id !== +id )
-    localStorage.setItem(
-      'Data',
-      JSON.stringify(this.ELEMENT_DATA)
-    )
-    this.dataSource = this.fetch(this.step);
+    // this.ELEMENT_DATA = await JSON.parse(localStorage.getItem('Data')).filter((elem: Coupon) => elem.id !== +id )
+    // localStorage.setItem(
+    //   'Data',
+    //   JSON.stringify(this.ELEMENT_DATA)
+    // )
+    this.ELEMENT_DATA = await this.crud.removeElem(id);
+    this.dataSource = await this.fetch(this.step);
     this.openDialog(id);
     // this.ELEMENT_DATA = await this.ELEMENT_DATA.filter((elem: Coupon) => elem.id !== +id );
     // this.dataSource = this.ELEMENT_DATA;

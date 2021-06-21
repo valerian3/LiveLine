@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {formatDate} from "@angular/common";
-import {CrudService} from "../../Shared/services/crud.service";
+import {CrudCouponService} from "../../Shared/services/crudCoupon.service";
 import {Coupon, typeOfCoupon} from "../../Shared/interfaces/interfaces";
 
 @Component({
@@ -12,12 +12,13 @@ import {Coupon, typeOfCoupon} from "../../Shared/interfaces/interfaces";
 export class CreateComponent implements OnInit {
 
   status: boolean = false;
+  success: boolean = false;
   form: FormGroup;
   currentTime = formatDate(new Date(), 'HH:mm:ss M/d/yy', 'ua');
   types: typeOfCoupon[];
 
   constructor(
-    private crud: CrudService
+    private crud: CrudCouponService
   ) { }
 
   ngOnInit(): void {
@@ -34,6 +35,7 @@ export class CreateComponent implements OnInit {
 
   onSubmit() {
     this.status = false;
+    this.success = false;
 
     const newCoupon: Coupon = {
       id: +(Date.now().toString().slice(10) + this.form.get('selectType').value.id),
@@ -41,9 +43,12 @@ export class CreateComponent implements OnInit {
       description: this.form.value.description,
       date: this.form.value.dateControl
     }
-    console.log(newCoupon);
+
     if(this.crud.addCoupon(newCoupon) === false){
       this.status = true;
+    }
+    else {
+      this.success = true;
     }
   }
 }

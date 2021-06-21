@@ -33,5 +33,6 @@
   </mat-form-field>
 
   <mat-error *ngIf="status">You need to change time</mat-error>
+  <div *ngIf="success" class="successfully">Added successfully</div>
   <button [disabled]="form.invalid" mat-raised-button color="primary" type="submit">add coupon</button>
 </form>

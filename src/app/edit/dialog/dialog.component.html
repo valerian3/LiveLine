@@ -1,0 +1,12 @@
+<form [formGroup]="form">
+
+  <mat-form-field>
+    <mat-label>Name of type</mat-label>
+    <input matInput formControlName="nameOfType" [(ngModel)]="data.nameOfType">
+  </mat-form-field>
+
+  <div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">No Thanks</button>
+    <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Ok</button>
+  </div>
+</form>
